@@ -1,0 +1,9 @@
+venv
+temp
+processed
+.git
+.env*
+**/__pycache__
+**/*.pyc
+Dockerfile
+.dockerignore

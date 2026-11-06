@@ -1,0 +1,65 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: music-app-frontend
+
+    ports:
+      - "5173:80"
+
+    depends_on:
+      - backend
+
+    networks:
+      - music-app
+
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: music-app-backend
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      AUDIO_ENGINE_URL: http://audio-engine:8000
+
+    depends_on:
+      - audio-engine
+
+    networks:
+      - music-app
+
+    volumes:
+      - backend-uploads:/app/uploads
+
+
+  audio-engine:
+    build:
+      context: ./audio-engine
+      dockerfile: Dockerfile
+
+    container_name: music-app-audio-engine
+
+    networks:
+      - music-app
+
+    volumes:
+      - processed-audio:/app/processed
+      - temp-audio:/app/temp
+
+
+networks:
+  music-app:
+    driver: bridge
+
+
+volumes:
+  backend-uploads:
+  processed-audio:
+  temp-audio:
