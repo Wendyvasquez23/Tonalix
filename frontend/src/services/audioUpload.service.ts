@@ -31,9 +31,11 @@ export async function uploadAudio(
     file,
   );
 
+  const api_url = import.meta.env.BACKEND_URL
+
   const response =
     await fetch(
-      "http://localhost:3000/audio/upload",
+      `${api_url}/audio/upload`,
       {
         method: "POST",
         body: formData,

@@ -15,10 +15,10 @@ export async function transposeAudio(
     "semitones",
     semitones.toString(),
   );
-
+  const api_url = import.meta.env.BACKEND_URL
   const response =
     await fetch(
-      "http://localhost:3000/audio/transpose",
+      `${api_url}/audio/transpose`,
       {
         method: "POST",
         body: formData,
