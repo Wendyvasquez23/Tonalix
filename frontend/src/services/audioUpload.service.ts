@@ -31,7 +31,7 @@ export async function uploadAudio(
     file,
   );
 
-  const api_url = import.meta.env.BACKEND_URL
+  const api_url = import.meta.env.VITE_BACKEND_URL
 
   const response =
     await fetch(

@@ -15,7 +15,7 @@ export async function transposeAudio(
     "semitones",
     semitones.toString(),
   );
-  const api_url = import.meta.env.BACKEND_URL
+  const api_url = import.meta.env.VITE_BACKEND_URL
   const response =
     await fetch(
       `${api_url}/audio/transpose`,
